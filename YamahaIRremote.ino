@@ -1,5 +1,6 @@
 #include "PinDefinitionsAndMore.h"  // Set IR_SEND_PIN for different CPU's
-#include "TinyIRSender.hpp"
+//#include "TinyIRSender.hpp"       //use when u use IR diode
+#include "TinyIRSenderReverse.hpp"  //use when u direct connect EPS to reciver in Yamaha
 #include <BluetoothSerial.h>
 
 // Serial
