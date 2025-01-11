@@ -1,11 +1,17 @@
 #include "PinDefinitionsAndMore.h"  // Set IR_SEND_PIN for different CPU's
 #include "TinyIRSender.hpp"
+#include <BluetoothSerial.h>
 
 // Serial
 bool stringComplete = false;
 String inputString = "";
 
+// BT
+String deviceName = "YamahaController";
+BluetoothSerial SerialBT;
+
 void setup() {
+  SerialBT.begin(deviceName);
   Serial.begin(115200);
   Serial.print("Send IR signals at pin: ");
   Serial.println(IR_SEND_PIN);
@@ -13,6 +19,7 @@ void setup() {
 }
 
 void loop() {
+  serialBTEvent();
   if (stringComplete) {
     if (catchSerial("PowerSwitch"))
       sendONKYO(IR_SEND_PIN, 0x817E, 0xD52A, 0);
@@ -43,6 +50,17 @@ bool catchSerial(String text) {
 void serialEvent() {
   while (Serial.available()) {
     char inChar = (char)Serial.read();
+    if (inChar == '\n') {
+      stringComplete = true;
+    } else
+      inputString += inChar;
+  }
+}
+
+//BT event
+void serialBTEvent() {
+  while (SerialBT.available()) {
+    char inChar = (char)SerialBT.read();
     if (inChar == '\n') {
       stringComplete = true;
     } else

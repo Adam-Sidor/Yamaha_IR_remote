@@ -1,4 +1,3 @@
-#line 1 "C:\\Users\\Adam\\AppData\\Local\\Temp\\.arduinoIDE-unsaved2024108-19208-1p3c1t5.k6h2\\TinySender\\PinDefinitionsAndMore.h"
 /*
  *  PinDefinitionsAndMore.h
  *
