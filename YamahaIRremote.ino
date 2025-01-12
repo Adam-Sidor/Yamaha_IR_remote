@@ -17,6 +17,8 @@ void setup() {
   Serial.print("Send IR signals at pin: ");
   Serial.println(IR_SEND_PIN);
   inputString.reserve(200);
+  pinMode(IR_SEND_PIN, OUTPUT);
+  digitalWrite(IR_SEND_PIN,HIGH);//comment this line if u are using IR diode
 }
 
 void loop() {
